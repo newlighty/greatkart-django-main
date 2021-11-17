@@ -8,19 +8,19 @@
 	<div class="container">
 
 		<!-- ============================ COMPONENT 1 ================================= -->
-		<h4 class="text-center mb-20">Review Your Order and Make Payment</h4>
+		<h4 class="mb-20 text-center">سفارش خود را بررسی کنید و پرداخت کنید</h4>
 		<div class="row">
 
 			<aside class="col-lg-8">
 				<div class="card">
-					<h5 class="card-header">Billing Address</h5>
+					<h5 class="card-header">آدرس قبض</h5>
 					<div class="card-body">
-						<p class="card-text mb-0">{{order.full_name}}</p>
-						<p class="card-text mb-0">{{order.full_address}}</p>
-						<p class="card-text mb-0">{{order.city}}, {{order.state}}</p>
-						<p class="card-text mb-0">{{order.country}}</p>
-						<p class="card-text mb-0">{{order.email}}</p>
-						<p class="card-text mb-0">{{order.phone}}</p>
+						<p class="mb-0 card-text">{{order.full_name}}</p>
+						<p class="mb-0 card-text">{{order.full_address}}</p>
+						<p class="mb-0 card-text">{{order.city}}, {{order.state}}</p>
+						<p class="mb-0 card-text">{{order.country}}</p>
+						<p class="mb-0 card-text">{{order.email}}</p>
+						<p class="mb-0 card-text">{{order.phone}}</p>
 						{% if order.order_note %}
 						<b>Order Note: </b> {{order.order_note}}
 						{% endif %}
@@ -29,21 +29,21 @@
 					</div>
 				</div>
 				<div class="card">
-					<h5 class="card-header">Payment Method</h5>
+					<h5 class="card-header">روش پرداخت</h5>
 					<div class="card-body">
-						<p class="card-text">PayPal</p>
+						<p class="card-text">زرین پال</p>
 
 					</div>
 				</div>
 				<div class="card">
-					<h5 class="card-header">Review Products</h5>
+					<h5 class="card-header">بررسی محصولات</h5>
 					<div class="card-body">
 						<table class="table table-borderless table-shopping-cart">
 							<thead class="text-muted">
 								<tr class="small text-uppercase">
-									<th scope="col">Product</th>
-									<th scope="col" width="120">Quantity</th>
-									<th scope="col" width="120">Price</th>
+									<th scope="col">محصول</th>
+									<th scope="col" width="120">تعداد</th>
+									<th scope="col" width="120">قیمت</th>
 
 								</tr>
 							</thead>
@@ -53,13 +53,16 @@
 								<tr>
 									<td>
 										<figure class="itemside align-items-center">
-											<div class="aside"><img src="{{ cart_item.product.images.url }}" class="img-sm"></div>
+											<div class="aside"><img src="{{ cart_item.product.images.url }}"
+													class="img-sm"></div>
 											<figcaption class="info">
-												<a href="{{ cart_item.product.get_url }}" class="title text-dark">{{ cart_item.product.product_name }}</a>
+												<a href="{{ cart_item.product.get_url }}" class="title text-dark">{{
+													cart_item.product.product_name }}</a>
 												<p class="text-muted small">
 													{% if cart_item.variations.all %}
 													{% for item in cart_item.variations.all %}
-													{{ item.variation_category | capfirst }} : {{ item.variation_value | capfirst }} <br>
+													{{ item.variation_category | capfirst }} : {{ item.variation_value |
+													capfirst }} <br>
 													{% endfor %}
 													{% endif %}
 												</p>
@@ -93,18 +96,18 @@
 					<div class="card-body">
 						<dl class="dlist-align">
 							<dt>Total price:</dt>
-							<dd class="text-right">$ {{total}}</dd>
+							<dd class="text-right">تومان {{total}}</dd>
 						</dl>
 						<dl class="dlist-align">
 							<dt>Tax:</dt>
-							<dd class="text-right"> $ {{tax}}</dd>
+							<dd class="text-right"> تومان {{tax}}</dd>
 						</dl>
 						<dl class="dlist-align">
-							<dt>Grand Total:</dt>
+							<dt>جمع کل:</dt>
 							<dd class="text-right text-dark b"><strong>$ {{grand_total}}</strong></dd>
 						</dl>
 						<hr>
-						<p class="text-center mb-3">
+						<p class="mb-3 text-center">
 							<img src="{% static './images/misc/payments.png' %}" height="26">
 						</p>
 
@@ -130,20 +133,20 @@
 <script>
 
 	function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
+		let cookieValue = null;
+		if (document.cookie && document.cookie !== '') {
+			const cookies = document.cookie.split(';');
+			for (let i = 0; i < cookies.length; i++) {
+				const cookie = cookies[i].trim();
+				// Does this cookie string begin with the name we want?
+				if (cookie.substring(0, name.length + 1) === (name + '=')) {
+					cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+					break;
+				}
+			}
+		}
+		return cookieValue;
+	}
 
 	var amount = "{{ grand_total }}"
 	var url = "{% url 'payments' %}"
@@ -162,7 +165,7 @@
 		},
 
 		// Set up the transaction
-		createOrder: function(data, actions) {
+		createOrder: function (data, actions) {
 			return actions.order.create({
 				purchase_units: [{
 					amount: {
@@ -173,14 +176,14 @@
 		},
 
 		// Finalize the transaction
-		onApprove: function(data, actions) {
-			return actions.order.capture().then(function(details) {
+		onApprove: function (data, actions) {
+			return actions.order.capture().then(function (details) {
 				// Show a success message to the buyer
 				console.log(details);
 				sendData();
-				function sendData(){
+				function sendData() {
 					fetch(url, {
-						method : "POST",
+						method: "POST",
 						headers: {
 							"Content-type": "application/json",
 							"X-CSRFToken": csrftoken,
@@ -192,10 +195,10 @@
 							status: details.status,
 						}),
 					})
-				  .then((response) => response.json())
-				  .then((data) => {
-						window.location.href = redirect_url + '?order_number='+data.order_number+'&payment_id='+data.transID;
-					});
+						.then((response) => response.json())
+						.then((data) => {
+							window.location.href = redirect_url + '?order_number=' + data.order_number + '&payment_id=' + data.transID;
+						});
 				}
 			});
 		}
