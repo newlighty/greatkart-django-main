@@ -4,11 +4,11 @@ from .models import Account
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder': 'Enter Password',
+        'placeholder': 'رمز عبور را وارد کنید',
         'class': 'form-control',
     }))
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder': 'Confirm Password'
+        'placeholder': 'رمز عبور را تایید کنید'
     }))
 
     class Meta:
@@ -22,14 +22,14 @@ class RegistrationForm(forms.ModelForm):
 
         if password != confirm_password:
             raise forms.ValidationError(
-                "Password does not match!"
+                "رمز عبور مطابقت ندارد!"
             )
 
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
-        self.fields['first_name'].widget.attrs['placeholder'] = 'Enter First Name'
-        self.fields['last_name'].widget.attrs['placeholder'] = 'Enter last Name'
-        self.fields['phone_number'].widget.attrs['placeholder'] = 'Enter Phone Number'
-        self.fields['email'].widget.attrs['placeholder'] = 'Enter Email Address'
+        self.fields['first_name'].widget.attrs['placeholder'] = 'نام را وارد کنید'
+        self.fields['last_name'].widget.attrs['placeholder'] = 'نام خانوادگی را وارد کنید'
+        self.fields['phone_number'].widget.attrs['placeholder'] = 'شماره تلفن را وارد کنید'
+        self.fields['email'].widget.attrs['placeholder'] = 'آدرس ایمیل را وارد کنید'
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control'

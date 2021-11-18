@@ -10,7 +10,11 @@ from django.http import HttpResponse
 from .forms import ReviewForm
 from django.contrib import messages
 from orders.models import OrderProduct
+# from django.conf import settings
 
+
+# languages = dict(settings.LANGUAGES).keys()
+# q = Q()
 
 def store(request, category_slug=None):
     categories = None
