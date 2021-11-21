@@ -125,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'fa' # زبان اصلی جنگو فارسی می شود
+LANGUAGE_CODE = 'fa-ir' # زبان اصلی جنگو فارسی می شود
 
 # LOCALE_PATHS = (Path.joinpath(BASE_DIR, "locale"),) # این پوشه حتما باید ایجاد شود
 
