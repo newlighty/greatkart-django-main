@@ -13,7 +13,7 @@ def home(request):
 
 
 
-    def home(request):
-     output = _("خوش امدید")
+    # def home(request):
+    #  output = _("خوش امدید")
     
-    return render(output, 'home.html', context)
+    # return render(output, 'home.html', context)

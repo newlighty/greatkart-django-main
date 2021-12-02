@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class CategoryConfig(AppConfig):
-    name = 'دسته بندی '
+    name = 'category'
+
