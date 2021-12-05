@@ -13,10 +13,10 @@
 #     if newslug is not None:
 #         slug=newslug
 #     else:
-#         slug=slugify(instance.n,allow_unicode=True)
+#         slug=slugify(instance.product_name,allow_unicode=True)
 
-#     instanceClass=instance.__class__
-#     qs=instance.objects.filter(slug=slug)
+#     instanClass=instance.__class__
+#     qs=instanClass.objects.filter(slug=slug)
 
 #     if qs.exists():
 #         newslug=f"{slug}-{qs.fist().id}"

@@ -36,8 +36,8 @@
 										aria-hidden="true"></i>
 									<i class="fa fa-star{% if single_product.averageReview < 4.5 %}-o{% elif single_product.averageReview >= 4.5 and single_product.averageReview < 5 %}-half-o {% endif %}"
 										aria-hidden="true"></i>
-									<span>{{single_product.countReview}} نظرات کابران/span>
-									</span>
+									<span>{{single_product.countReview}} نظرات کابران</span>
+								</span>
 							</div>
 
 
@@ -74,7 +74,7 @@
 								</div>
 							</div>
 							<hr>
-							{% if single_product.stock <= 0 %} <h5 class="text-danger">تمام شده</h5>
+							{% if single_product.stock <= 0 %} <h5 class="text-danger">اتمام موجودی</h5>
 								{% else %}
 								<button type="submit" class="btn btn-primary"> <span class="text">به سبد خرید اضافه
 										کنید</span> <i class="fas fa-shopping-cart"></i> </button>
@@ -95,54 +95,54 @@
 
 				<form action="{% url 'submit_review' single_product.id %}" method="POST">
 					{% csrf_token %}
-					<h5>نظر خود را بنویسید/h5>
+					<h5>نظر خود را بنویسید</h5>
 
-						<div>
-							<!-- Rating stars -->
-							<label>چه امتیازی به این محصول میدهید?</label>
-							<br>
-							<div class="rate">
-								<input type="radio" name="rating" id="rating10" value="5" required /><label
-									for="rating10" title="5"></label>
-								<input type="radio" name="rating" id="rating9" value="4.5" required /><label
-									for="rating9" title="4.5" class="half"></label>
-								<input type="radio" name="rating" id="rating8" value="4" required /><label for="rating8"
-									title="4"></label>
-								<input type="radio" name="rating" id="rating7" value="3.5" required /><label
-									for="rating7" title="3.5" class="half"></label>
-								<input type="radio" name="rating" id="rating6" value="3" required /><label for="rating6"
-									title="3"></label>
-								<input type="radio" name="rating" id="rating5" value="2.5" required /><label
-									for="rating5" title="2.5" class="half"></label>
-								<input type="radio" name="rating" id="rating4" value="2" required /><label for="rating4"
-									title="2"></label>
-								<input type="radio" name="rating" id="rating3" value="1.5" required /><label
-									for="rating3" title="1.5" class="half"></label>
-								<input type="radio" name="rating" id="rating2" value="1" required /><label for="rating2"
-									title="1"></label>
-								<input type="radio" name="rating" id="rating1" value="0.5" required /><label
-									for="rating1" title="0.5" class="half"></label>
-							</div>
-							<br>
-							عنوان نظرات
-							<input type="text" class="form-control" name="subject">
-							<br>
-							نظرات:
-							<textarea name="review" rows="4" class="form-control"></textarea>
-							<br>
-							{% if user.is_authenticated %}
-							{% if orderproduct %}
-							<input type="submit" value="Submit Review" class="btn btn-primary">
-							{% else %}
-							<p>باید این محصول رو خریداری کنید تا بتوانید نظر بدهید.</p>
-							{% endif %}
-							{% else %}
-							<p>برای ارسال نظر باید وارد سیستم شوید. <span><a href="{% url 'login' %}">ورود
-										now</a></span></p>
-							{% endif %}
-
+					<div>
+						<!-- Rating stars -->
+						<label>چه امتیازی به این محصول میدهید?</label>
+						<br>
+						<div class="rate">
+							<input type="radio" name="rating" id="rating10" value="5" required /><label for="rating10"
+								title="5"></label>
+							<input type="radio" name="rating" id="rating9" value="4.5" required /><label for="rating9"
+								title="4.5" class="half"></label>
+							<input type="radio" name="rating" id="rating8" value="4" required /><label for="rating8"
+								title="4"></label>
+							<input type="radio" name="rating" id="rating7" value="3.5" required /><label for="rating7"
+								title="3.5" class="half"></label>
+							<input type="radio" name="rating" id="rating6" value="3" required /><label for="rating6"
+								title="3"></label>
+							<input type="radio" name="rating" id="rating5" value="2.5" required /><label for="rating5"
+								title="2.5" class="half"></label>
+							<input type="radio" name="rating" id="rating4" value="2" required /><label for="rating4"
+								title="2"></label>
+							<input type="radio" name="rating" id="rating3" value="1.5" required /><label for="rating3"
+								title="1.5" class="half"></label>
+							<input type="radio" name="rating" id="rating2" value="1" required /><label for="rating2"
+								title="1"></label>
+							<input type="radio" name="rating" id="rating1" value="0.5" required /><label for="rating1"
+								title="0.5" class="half"></label>
 						</div>
-						{% include 'includes/alerts.html' %}
+						<br>
+						عنوان نظرات
+						<input type="text" class="form-control" name="subject">
+						<br>
+						نظرات:
+						<textarea name="review" rows="4" class="form-control"></textarea>
+						<br>
+						{% if user.is_authenticated %}
+						{% if orderproduct %}
+						<input type="submit" value="Submit Review" class="btn btn-primary">
+						{% else %}
+						<p>باید این محصول رو خریداری کنید تا بتوانید نظر بدهید.</p>
+						{% endif %}
+						{% else %}
+						<p> برای ارسال نظر باید وارد سیستم شوید. <span><a href="{% url 'login' %}"> اکنون وارد شوید
+								</a></span></p>
+						{% endif %}
+
+					</div>
+					{% include 'includes/alerts.html' %}
 				</form>
 				<br>
 				<header class="section-heading">
@@ -159,7 +159,7 @@
 								aria-hidden="true"></i>
 							<i class="fa fa-star{% if single_product.averageReview < 4.5 %}-o{% elif single_product.averageReview >= 4.5 and single_product.averageReview < 5 %}-half-o {% endif %}"
 								aria-hidden="true"></i>
-							<span>{{single_product.countReview}} نظرات</span>
+							<span>{{single_product.countReview}} نظرات </span>
 						</span>
 					</div>
 
