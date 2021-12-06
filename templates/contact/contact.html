@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+{% comment %} <html>
+<body> {% endcomment %}
+
+
+<div class"container mt-5 text-center" style="width: 500px; font-family: verdana, 'sans-serif';" >
+
+    <form method="post">
+        <h3>send message</h3>
+        {% csrf_token %}
+        <div class="form-group">
+            {% if message %}
+              {% for message in message %}
+              <span{% if message.tags %} class="{{ message.tags }}"{% endif %}
+              style="color: green">{{message}}</span>
+              
+              {% endfor %}
+            {% endif %} 
+        </div>
+        <div class="form-group">
+            {{ forms.name }}
+        </div> 
+        
+        <div class="form-group">
+            {{ forms.email }}
+        </div> 
+
+        <div class="form-group">
+            {{ forms.subject }}
+        </div> 
+
+        <div class="form-group">
+            {{ forms.message }}
+        </div> 
+
+        <button class="btn btn-info btn-block" type="submit">submit </button>
+
+    </form>
+
+</div>
+
+{% comment %} </body>
+
+</html> {% endcomment %}
+
+
+  <!-- content -->
+  {% endblock %}
