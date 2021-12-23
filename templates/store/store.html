@@ -8,7 +8,7 @@
 		{% if 'search' in request.path %}
 		<h2 class="title-page">نتایج جستجو</h2>
 		{% else %}
-		<h2 class="title-page">Our Store</h2>
+		<h2 class="title-page">فروشگاه ما</h2>
 		{% endif %}
 
 	</div> <!-- container //  -->
@@ -34,9 +34,9 @@
 							<div class="card-body">
 
 								<ul class="list-menu">
-									<li><a href="{% url 'store' %}">تمام محصولات </a></li>
+									<li><a href="{% url 'store' %}"> تمام محصولات </a></li>
 									{% for category in links %}
-									<li><a href="{{ category.get_absolute_url }}">{{ category.category_name }} </a></li>
+									<li><a href="{{ category.get_url }}">{{ category.category_name }} </a></li>
 									{% endfor %}
 								</ul>
 
@@ -105,7 +105,7 @@
 											<option value="150">هزار تومان 150</option>
 											<option value="200">هزار تومان 200</option>
 											<option value="500">هزار تومان 500</option>
-											<option value="1000">$یک میلیون تومان 1</option>
+											<option value="1000">یک میلیون تومان 1</option>
 										</select>
 									</div>
 									<div class="text-right form-group col-md-6">
