@@ -41,19 +41,19 @@ class MyAccountManager(BaseUserManager):
 
 
 class Account(AbstractBaseUser):
-    first_name      = models.CharField(max_length=50)
-    last_name       = models.CharField(max_length=50)
-    username        = models.CharField(max_length=50, unique=True)
-    email           = models.EmailField(max_length=100, unique=True)
-    phone_number    = models.CharField(max_length=50)
+    first_name      = models.CharField(max_length=50,verbose_name='اسم کوچک')
+    last_name       = models.CharField(max_length=50,verbose_name='نام خانوادگی')
+    username        = models.CharField(max_length=50, unique=True,verbose_name='نام کاربری')
+    email           = models.EmailField(max_length=100, unique=True,verbose_name='ایمیل')
+    phone_number    = models.CharField(max_length=50,verbose_name='تلفن')
 
     # required
-    date_joined     = models.DateTimeField(auto_now_add=True)
-    last_login      = models.DateTimeField(auto_now_add=True)
-    is_admin        = models.BooleanField(default=False)
-    is_staff        = models.BooleanField(default=False)
-    is_active        = models.BooleanField(default=False)
-    is_superadmin        = models.BooleanField(default=False)
+    date_joined     = models.DateTimeField(auto_now_add=True,verbose_name='تاریخ پیوستن')
+    last_login      = models.DateTimeField(auto_now_add=True,verbose_name='اخرین  ورود')
+    is_admin        = models.BooleanField(default=False,verbose_name='ادمین')
+    is_staff        = models.BooleanField(default=False,verbose_name='کارمندان')
+    is_active        = models.BooleanField(default=False,verbose_name='فعال')
+    is_superadmin        = models.BooleanField(default=False,verbose_name='مدیر سایت')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
@@ -62,6 +62,12 @@ class Account(AbstractBaseUser):
 
     def full_name(self):
         return f'{self.first_name} {self.last_name}'
+
+    
+    class Meta:
+        verbose_name = ' حساب'
+        verbose_name_plural = 'حسابها'
+
 
     def __str__(self):
         return self.email

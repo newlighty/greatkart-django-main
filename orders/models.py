@@ -5,12 +5,12 @@ from store.models import Product, Variation
 
 
 class Payment(models.Model):
-    user = models.ForeignKey(Account, on_delete=models.CASCADE)
-    payment_id = models.CharField(max_length=100)
-    payment_method = models.CharField(max_length=100)
-    amount_paid = models.CharField(max_length=100) # this is the total amount paid
-    status = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE,verbose_name='نام')
+    payment_id = models.CharField(max_length=100,verbose_name='ایدی پرداخت')
+    payment_method = models.CharField(max_length=100,verbose_name='روش پرداخت')
+    amount_paid = models.CharField(max_length=100,verbose_name='مقدار پرداخت') # this is the total amount paid
+    status = models.CharField(max_length=100,verbose_name='وضعیت')
+    created_at = models.DateTimeField(auto_now_add=True,verbose_name='ایجاد شده در')
 
     def __str__(self):
         return self.payment_id

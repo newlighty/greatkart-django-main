@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+import os
 
 from pathlib import Path
 
@@ -37,12 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'category',
-    'accounts',
-    'store',
-    'carts',
-    'orders',
-    'contactforms',
+    'category.apps.CategoryConfig',
+    'accounts.apps.AccountsConfig',
+    'store.apps.StoreConfig',
+    'carts.apps.CartsConfig',
+    'orders.apps.OrdersConfig',
+    'contactforms.apps.ContactformsConfig',
+    # 'rosetta',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #  'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
    
 ]
 
@@ -126,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'fa-ir'# زبان اصلی جنگو فارسی می شود
+# LANGUAGE_CODE = 'fa-ir'# زبان اصلی جنگو فارسی می شود
 
 # LOCALE_PATHS = (Path.joinpath(BASE_DIR, "locale"),) # این پوشه حتما باید ایجاد شود
 
@@ -142,6 +144,24 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+from django.utils.translation import gettext_lazy as _
+
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa'
+
+
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')];
+
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, "locale"),
+    os.path.join(BASE_DIR, "frobshop/locale"), 
+]
+
+TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
 
 
 
