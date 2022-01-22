@@ -15,11 +15,6 @@ class Payment(models.Model):
     def __str__(self):
         return self.payment_id
 
-    class Meta:
-        verbose_name = 'پرداخت'
-        verbose_name_plural = 'پرداخت ها'
-        
-
 
 class Order(models.Model):
     STATUS = (
@@ -29,26 +24,26 @@ class Order(models.Model):
         ('Cancelled', 'Cancelled'),
     )
 
-    user = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True,verbose_name='کاربر')
-    payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True,verbose_name='پرداخت')
-    order_number = models.CharField(max_length=20,verbose_name='شماره سفارش')
-    first_name = models.CharField(max_length=50,verbose_name='نام')
-    last_name = models.CharField(max_length=50,verbose_name='نام خانوادگی')
-    phone = models.CharField(max_length=15,verbose_name='تلفن')
-    email = models.EmailField(max_length=50,verbose_name='ایمیل')
-    address_line_1 = models.CharField(max_length=50,verbose_name='ادرس اول ')
-    address_line_2 = models.CharField(max_length=50, blank=True,verbose_name='ادرس دوم')
-    country = models.CharField(max_length=50,verbose_name='کشور')
-    state = models.CharField(max_length=50,verbose_name='استان')
-    city = models.CharField(max_length=50,verbose_name='شهر')
-    order_note = models.CharField(max_length=100, blank=True,verbose_name='یاداشت سفارش')
-    order_total = models.FloatField() 
+    user = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
+    payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
+    order_number = models.CharField(max_length=20)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    phone = models.CharField(max_length=15)
+    email = models.EmailField(max_length=50)
+    address_line_1 = models.CharField(max_length=50)
+    address_line_2 = models.CharField(max_length=50, blank=True)
+    country = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    order_note = models.CharField(max_length=100, blank=True)
+    order_total = models.FloatField()
     tax = models.FloatField()
-    status = models.CharField(max_length=10, choices=STATUS, default='New',verbose_name='وضیت')
+    status = models.CharField(max_length=10, choices=STATUS, default='New')
     ip = models.CharField(blank=True, max_length=20)
-    is_ordered = models.BooleanField(default=False ,verbose_name='سفارش داده شده')
-    created_at = models.DateTimeField(auto_now_add=True ,verbose_name='ایجاد شده در')
-    updated_at = models.DateTimeField(auto_now=True,verbose_name='بروز شده در')
+    is_ordered = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
     def full_name(self):
@@ -60,31 +55,18 @@ class Order(models.Model):
     def __str__(self):
         return self.first_name
 
-    
-    class Meta:
-        verbose_name = 'سفارشات'
-        verbose_name_plural = ' سفارش ها'
-            
-
 
 class OrderProduct(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE,verbose_name='سفارش')
-    payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True,verbose_name='پرداخت')
-    user = models.ForeignKey(Account, on_delete=models.CASCADE,verbose_name='کاربر')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE,verbose_name='محصول')
-    variations = models.ManyToManyField(Variation, blank=True,verbose_name='مشخصه ها')
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    variations = models.ManyToManyField(Variation, blank=True)
     quantity = models.IntegerField()
     product_price = models.FloatField()
-    ordered = models.BooleanField(default=False ,verbose_name='سفارش داده شده')
-    created_at = models.DateTimeField(auto_now_add=True,verbose_name='ایجاد شده')
-    updated_at = models.DateTimeField(auto_now=True,verbose_name='بروز شده در')
+    ordered = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.product.product_name
-
-
-
-    class Meta:
-        verbose_name = 'محصولات سفارش'
-        verbose_name_plural = 'محصولات سفارش ها'
-        

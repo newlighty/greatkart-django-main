@@ -12,11 +12,6 @@ class Cart(models.Model):
     def __str__(self):
         return self.cart_id
 
-    class Meta:
-        verbose_name = 'سبد'
-        verbose_name_plural = 'سبد'
-        
-
 
 class CartItem(models.Model):
     user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True,verbose_name='کاربر')
@@ -31,9 +26,3 @@ class CartItem(models.Model):
 
     def __unicode__(self):
         return self.product
-
-    class Meta:
-        verbose_name = 'ایتم سبد'
-        verbose_name_plural = 'ایتم های سبد'
-
-    
