@@ -3,6 +3,7 @@ from category.models import Category
 from django.urls import reverse
 from accounts.models import Account
 from django.db.models import Avg, Count
+from django_jalali.db import models as jmodels
 
 # Create your models here.
 
@@ -15,8 +16,8 @@ class Product(models.Model):
     stock           = models.IntegerField()
     is_available    = models.BooleanField(default=True)
     category        = models.ForeignKey(Category, on_delete=models.CASCADE)
-    created_date    = models.DateTimeField(auto_now_add=True)
-    modified_date   = models.DateTimeField(auto_now=True)
+    created_date    = jmodels.jDateTimeField(auto_now_add=True)
+    modified_date   = jmodels.jDateTimeField(auto_now=True)
 
     
 
@@ -61,7 +62,7 @@ class Variation(models.Model):
     variation_category = models.CharField(max_length=100, choices=variation_category_choice)
     variation_value     = models.CharField(max_length=100)
     is_active           = models.BooleanField(default=True)
-    created_date        = models.DateTimeField(auto_now=True)
+    created_date        = jmodels.jDateTimeField(auto_now=True)
 
     objects = VariationManager()
 
@@ -77,8 +78,8 @@ class ReviewRating(models.Model):
     rating = models.FloatField()
     ip = models.CharField(max_length=20, blank=True)
     status = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = jmodels.jDateTimeField(auto_now_add=True)
+    updated_at = jmodels.jDateTimeField(auto_now=True)
 
     def __str__(self):
         return self.subject
