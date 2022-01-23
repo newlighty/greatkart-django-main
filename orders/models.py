@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import Account
 from store.models import Product, Variation
+from django_jalali.db import models as jmodels
 
 
 
@@ -10,7 +11,7 @@ class Payment(models.Model):
     payment_method = models.CharField(max_length=100,verbose_name='روش پرداخت')
     amount_paid = models.CharField(max_length=100,verbose_name='مقدار پرداخت') # this is the total amount paid
     status = models.CharField(max_length=100,verbose_name='وضعیت')
-    created_at = models.DateTimeField(auto_now_add=True,verbose_name='ایجاد شده در')
+    created_at = jmodels.jDateTimeField(auto_now_add=True,verbose_name='ایجاد شده در')
 
     def __str__(self):
         return self.payment_id
@@ -42,8 +43,8 @@ class Order(models.Model):
     status = models.CharField(max_length=10, choices=STATUS, default='New')
     ip = models.CharField(blank=True, max_length=20)
     is_ordered = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = jmodels.jDateTimeField(auto_now_add=True)
+    updated_at = jmodels.jDateTimeField(auto_now=True)
 
 
     def full_name(self):
@@ -65,8 +66,8 @@ class OrderProduct(models.Model):
     quantity = models.IntegerField()
     product_price = models.FloatField()
     ordered = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = jmodels.jDateTimeField(auto_now_add=True)
+    updated_at = jmodels.jDateTimeField(auto_now=True)
 
     def __str__(self):
         return self.product.product_name

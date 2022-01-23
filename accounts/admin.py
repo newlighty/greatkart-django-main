@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import Account
+from django_jalali.admin.filters import JDateFieldListFilter
 
 # Register your models here.
 
@@ -11,7 +12,9 @@ class AccountAdmin(UserAdmin):
     ordering = ('-date_joined',)
 
     filter_horizontal = ()
-    list_filter = ()
+    list_filter = (
+        ('date_joined', JDateFieldListFilter),
+    )
     fieldsets = ()
 
 admin.site.register(Account, AccountAdmin)

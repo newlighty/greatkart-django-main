@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django_jalali.db import models as jmodels
 
 
 # Create your models here.
@@ -48,8 +49,8 @@ class Account(AbstractBaseUser):
     phone_number    = models.CharField(max_length=50,verbose_name='تلفن')
 
     # required
-    date_joined     = models.DateTimeField(auto_now_add=True,verbose_name='تاریخ پیوستن')
-    last_login      = models.DateTimeField(auto_now_add=True,verbose_name='اخرین  ورود')
+    date_joined     = jmodels.jDateTimeField(auto_now_add=True,verbose_name='تاریخ پیوستن')
+    last_login      = jmodels.jDateTimeField(auto_now_add=True,verbose_name='اخرین  ورود')
     is_admin        = models.BooleanField(default=False,verbose_name='ادمین')
     is_staff        = models.BooleanField(default=False,verbose_name='کارمندان')
     is_active        = models.BooleanField(default=False,verbose_name='فعال')

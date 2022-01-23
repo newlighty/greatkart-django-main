@@ -1,13 +1,14 @@
 from django.db import models
 from store.models import Product, Variation
 from accounts.models import Account
+from django_jalali.db import models as jmodels
 
 
 # Create your models here.
 
 class Cart(models.Model):
     cart_id = models.CharField(max_length=250, blank=True,verbose_name='آیدی-سبد')
-    date_added = models.DateField(auto_now_add=True,verbose_name='تاریخ اضافه شدن')
+    date_added = jmodels.jDateField(auto_now_add=True,verbose_name='تاریخ اضافه شدن')
 
     def __str__(self):
         return self.cart_id
