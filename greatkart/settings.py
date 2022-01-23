@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'carts.apps.CartsConfig',
     'orders.apps.OrdersConfig',
     'contactforms.apps.ContactformsConfig',
+    'django_jalali',
     # 'rosetta',
 ]
 
@@ -202,3 +203,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'friendzone2013@gmail.com'
 EMAIL_HOST_PASSWORD = 'H79@2*41FQ12'
 EMAIL_USE_TLS = True
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
